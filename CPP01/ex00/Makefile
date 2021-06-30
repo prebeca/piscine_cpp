@@ -1,4 +1,4 @@
-NAME	=	my_little_pony
+NAME	=	zombie
 
 C_DIR	=	src
 
@@ -7,7 +7,9 @@ O_DIR	=	obj
 SRCS	=	${patsubst %, ${C_DIR}/%, ${C_FILES}}
 
 C_FILES	=	main.cpp\
-			Pony.cpp\
+			Zombie.cpp\
+			newZombie.cpp\
+			randomChump.cpp
 
 OBJS	=	${patsubst ${C_DIR}/%, ${O_DIR}/%, ${SRCS:.cpp=.o}}
 

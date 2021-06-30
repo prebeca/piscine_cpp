@@ -1,36 +1,25 @@
-NAME	=	zombie
+NAME	=	Hello_Brain
 
-C_DIR	=	src
+SRCS	=	ex04.cpp
 
-O_DIR	=	obj
-
-SRCS	=	${patsubst %, ${C_DIR}/%, ${C_FILES}}
-
-C_FILES	=	main.cpp\
-			names.cpp\
-			Zombie.cpp\
-			ZombieEvent.cpp
-
-OBJS	=	${patsubst ${C_DIR}/%, ${O_DIR}/%, ${SRCS:.cpp=.o}}
+OBJS	=	${SRCS:.cpp=.o}
 
 CC		=	clang++
 
-CFLAGS	=	-I./inc/ -g -Wall -Wextra -Werror -std=c++98
+CFLAGS	=	-g -Wall -Wextra -Werror -std=c++98
 
 all:		${NAME}
 
 ${NAME}:	${OBJS}
-			${CC} ${CFLAGS} ${OBJS} ${LIBS} -o ${NAME}
+			${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 
-${O_DIR}/%.o : ${C_DIR}/%.cpp
-			@mkdir -p obj
+%.o : %.cpp
 			${CC} ${CFLAGS} -c $< -o $@
 
 .PHONY:		clean fclean re .c.o all
 
 clean:
-			rm -rf ${O_DIR}
-
+			rm -f *.o
 fclean:		clean
 			rm -f ${NAME}
 

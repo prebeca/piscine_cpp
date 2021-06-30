@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 12:21:11 by user42            #+#    #+#             */
-/*   Updated: 2021/05/31 14:06:44 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/30 14:04:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ HumanA::~HumanA()
 
 void	HumanA::attack(void)
 {
-	std::cout << name << " attack with his " << weapon.getType() << std::endl;
+	std::cout << name << " attacks with his " << weapon.getType() << std::endl;
 }

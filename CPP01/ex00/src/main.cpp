@@ -5,34 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/26 14:33:01 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 18:25:43 by user42           ###   ########.fr       */
+/*   Created: 2021/05/26 16:45:01 by user42            #+#    #+#             */
+/*   Updated: 2021/06/30 13:55:23 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Pony.hpp"
+#include "Zombie.hpp"
 
-void	ponyOnTheStack(std::string name, std::string color)
+Zombie*	newZombie(std::string name);
+void	randomChump(std::string name);
+
+int main()
 {
-	Pony	my_little_pony = Pony(name, color);
+    Zombie *myZombie = 0;
 
-	std::cout << my_little_pony.to_string() << " He/She is playing on the stack." << std::endl;
-	return ;
-}
+    randomChump("Louis");
+    randomChump("Martine");
+    randomChump("George");
 
-void	ponyOnTheHeap(std::string name, std::string color)
-{
-	Pony    *my_little_pony = new Pony(name, color);
+    myZombie = newZombie("Carl");
+	myZombie->announce();
+    delete myZombie;
+    myZombie = newZombie("Maxime");
+	myZombie->announce();
+    delete myZombie;
+    myZombie = newZombie("Jeanne");
+	myZombie->announce();
+    delete myZombie;
 
-	std::cout << my_little_pony->to_string() << " He/She is playing on the heap." << std::endl;
-	delete my_little_pony;
-	return ;
-}
-
-int		main()
-{
-	ponyOnTheStack("OnTheStack", "pink");
-	std::cout << std::endl;
-	ponyOnTheHeap("OnTheHeap", "red");
-	return (0);
+    return (0);
 }

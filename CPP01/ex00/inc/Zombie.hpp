@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 15:35:42 by user42            #+#    #+#             */
-/*   Updated: 2021/05/31 12:31:07 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/30 13:35:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,13 @@ class	Zombie
 {
 private:
 	std::string name;
-	std::string type;
 
 public:
 	Zombie();
-	Zombie(std::string name, std::string type);
+	Zombie(std::string name);
 	~Zombie();
 
-	void	announce(void);
-    void    set_name(std::string new_name);
-    void    set_type(std::string new_type);
+	void    announce(void);
 };
 
 #endif

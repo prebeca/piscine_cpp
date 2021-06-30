@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*   ZombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/31 12:20:53 by user42            #+#    #+#             */
-/*   Updated: 2021/05/31 14:06:02 by user42           ###   ########.fr       */
+/*   Created: 2021/05/27 12:15:17 by user42            #+#    #+#             */
+/*   Updated: 2021/06/30 13:53:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanB.hpp"
+#include "Zombie.hpp"
 
-HumanB::HumanB(std::string name): name(name)
+Zombie *zombieHorde(int N, std::string name)
 {
+    int i;
+
+	Zombie *horde = new Zombie[N];
+    i = 0;
+    while (i < N)
+    {
+        horde[i].set_name(name);
+		++i;
+    }
+	return (horde);
 }
 
-HumanB::~HumanB()
+void    announceHorde(int horde_size, Zombie horde[])
 {
-}
+    int i;
 
-void	HumanB::setWeapon(Weapon &weapon)
-{
-	this->weapon = &weapon;
-}
-
-void	HumanB::attack(void)
-{
-	std::cout << name << " attack with his " << weapon->getType() << std::endl;
+    if (!horde)
+        return ;
+    i = 0;
+    while (i < horde_size)
+        horde[i++].announce();
 }

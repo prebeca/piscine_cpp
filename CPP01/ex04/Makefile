@@ -1,6 +1,6 @@
-NAME	=	Hello_Brain
+NAME	=	replace
 
-SRCS	=	ex04.cpp
+SRCS	=	main.cpp
 
 OBJS	=	${SRCS:.cpp=.o}
 
@@ -22,5 +22,6 @@ clean:
 			rm -f *.o
 fclean:		clean
 			rm -f ${NAME}
+			rm -f *.replace
 
 re:			fclean all
