@@ -1,6 +1,6 @@
 NAME	=	Hello_Brain
 
-SRCS	=	ex04.cpp
+SRCS	=	main.cpp
 
 OBJS	=	${SRCS:.cpp=.o}
 

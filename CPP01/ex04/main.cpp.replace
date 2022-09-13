@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 13:00:18 by user42            #+#    #+#             */
-/*   Updated: 2021/07/28 12:14:40 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/30 15:02:45 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,41 +27,52 @@ int    check_args(int argc, char *argv[])
 	return (0);
 }
 
-std::string replace_word(std::string str, unsigned long posFromWhereToReplace, int numberOfCharToReplace, std::string strToReplaceWith)
+std::string replace_word(std::string str, unsigned long pos, int len, std::string str2)
 {
 	std::stringstream sStrm;
+	unsigned long i = 0;
 
-	sStrm << str.substr(0, posFromWhereToReplace);
-	sStrm << strToReplaceWith;
-	sStrm << &str[posFromWhereToReplace + numberOfCharToReplace];
+	while (i < pos)
+		sStrm << str[i++];
 
+	sStrm << str2;
+
+	i += len;
+	while (i < str.length())
+		sStrm << str[i++];
 	return (sStrm.str());
 }
 
 int replace(std::string fileName, std::string s1, std::string s2)
 {
-	std::string content;
-
 	std::ifstream input_file (fileName.c_str());
 	if (!input_file.is_open())
 		return (1);
-	std::getline(input_file, content, '\0');
-	input_file.close();
 
-	int index = 0;
-	size_t pos;
-	while ((pos = content.find(s1, index)) != std::string::npos)
+	std::stringstream sStrm;
+	sStrm << fileName << ".replace";
+	std::ofstream output_file (sStrm.str().c_str());
+	if (!output_file.is_open())
 	{
-		content = replace_word(content, pos, s1.length(), s2);
-		index = pos + s2.length();
+		input_file.close();
+		return (1);
 	}
 
-	std::ofstream output_file ((fileName+".replace").c_str());
-	if (!output_file.is_open())
-		return (1);
-	output_file << content;
-	output_file.close();
+	std::string line;
+	while (std::getline(input_file, line))
+	{
+		int index = 0;
+		size_t pos;
+		while ((pos = line.find(s1, index)) != std::string::npos)
+		{
+			line = replace_word(line, pos, s1.length(), s2);
+			index = pos + s2.length();
+		}
+		output_file << line << std::endl;
+	}
 
+	output_file.close();
+	input_file.close();
 	return (0);
 }
 
@@ -74,7 +85,7 @@ int    main(int argc, char *argv[])
 	}
 	if (replace(argv[1], argv[2], argv[3]))
 	{
-		std::cout << "replace: error" << std::endl;
+		std::cout << "replace: error." << std::endl;
 		return (1);
 	}
 	return (0);

@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ZombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   Karen.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/27 12:15:17 by user42            #+#    #+#             */
-/*   Updated: 2021/07/27 16:53:19 by user42           ###   ########.fr       */
+/*   Created: 2021/06/30 20:55:35 by user42            #+#    #+#             */
+/*   Updated: 2021/07/26 17:01:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef KAREN_HPP
+# define KAREN_HPP
 
-Zombie *zombieHorde(int N, std::string name)
+# include <iostream>
+
+class Karen
 {
-    int i;
+private:
+	void debug( void );
+	void info( void );
+	void warning( void );
+	void error( void );
 
-	if (N < 0)
-		return (NULL);
-	Zombie *horde = new Zombie[N];
-    i = 0;
-    while (i < N)
-    {
-        horde[i].set_name(name);
-		++i;
-    }
-	return (horde);
-}
+	void (Karen::*functptr[5])( void );
+	std::string levelList[5];
 
-void    announceHorde(int horde_size, Zombie horde[])
-{
-    int i;
+public:
+	Karen();
+	~Karen();
+	void complain(std::string level);
+};
 
-    if (!horde)
-        return ;
-    i = 0;
-    while (i < horde_size)
-        horde[i++].announce();
-}
+#endif
